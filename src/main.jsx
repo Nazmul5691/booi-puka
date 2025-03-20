@@ -11,6 +11,7 @@ import ErrorPage from './components/ErrorPage';
 import Root from './components/Root';
 import Home from './components/Home';
 import BookDetail from './components/BookDetail';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/book/:bookId",
         element: <BookDetail />,
-        loader : () => fetch('/booksData.json'),
+        loader: () => fetch('/booksData.json'),
       }
     ],
   },
@@ -34,6 +35,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />
+    <HelmetProvider>
+      <RouterProvider router={router} />
+    </HelmetProvider>
   </StrictMode>,
 )
